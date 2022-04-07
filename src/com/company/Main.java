@@ -1,6 +1,5 @@
 package com.company;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -15,28 +14,54 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        while(true) {
-            System.out.println(ANSI_GREEN + "Выберите команду:\n" + ANSI_RESET +
-                    "1) Конвертации числа из 10-ричной системы счисления в 16-ричную.\n" +
-                    "2) Конвертации числа из 10-ричной системы счисления в 2-ичную.\n" +
-                    "3) Конвертации числа из 2-ичной системы счисления в 10-ричную.\n" +
-                    "4) Завершить работу");
-
-            System.out.print(ANSI_YELLOW+ "Ввод: " + ANSI_RESET);
-            int num = in.nextInt();
-            if (num == 1) {
-                System.out.println("10 в 16");
-            } else if (num == 2) {
-                System.out.println("10 в 2");
-            } else if (num == 3) {
-                System.out.println("2 в 10");
-            } else if (num == 4) {
-                System.out.println(ANSI_GREEN + "До новых встреч!" + ANSI_RESET);
-                in.close();
-                break;
-            } else {
-                System.out.println(ANSI_RED + "Вы ввели некорректный номер, попробуйте снова." + ANSI_RESET);
+        boolean flag = true;
+        while (flag) {
+            printCommand();
+            int command = 0;
+            int number = 0;
+            if (checkInput(in)) {
+                command = in.nextInt();
+                if (command != 4) {
+                    System.out.print(ANSI_GREEN + "Ввведите число:\n" + ANSI_RESET +
+                            ANSI_YELLOW + "Ввод числа: " + ANSI_RESET);
+                    if (checkInput(in)) {
+                        number = in.nextInt();
+                    } else {
+                        command = 0;
+                    }
+                }
+            }
+            Converter converter = new Converter(number);
+            switch (command) {
+                case 1 -> converter.runDecToHex();
+                case 2 -> converter.runDecToBin();
+                case 3 -> converter.runBinToDec();
+                case 4 -> {
+                    System.out.println(ANSI_GREEN + "До новых встреч!" + ANSI_RESET);
+                    in.close();
+                    flag = false;
+                }
+                default -> System.out.println(ANSI_RED + "Некорректный ввод, попробуйте снова." + ANSI_RESET);
             }
         }
+    }
+
+    public static boolean checkInput(Scanner in) {
+        if (in.hasNextInt()) {
+            return true;
+        } else {
+            in.nextLine();
+        }
+        return false;
+    }
+
+    public static void printCommand() {
+        System.out.println(ANSI_GREEN + "Выберите команду:\n" + ANSI_RESET +
+                "1) Конвертации числа из 10-ричной системы счисления в 16-ричную.\n" +
+                "2) Конвертации числа из 10-ричной системы счисления в 2-ичную.\n" +
+                "3) Конвертации числа из 2-ичной системы счисления в 10-ричную.\n" +
+                "4) Завершить работу");
+
+        System.out.print(ANSI_YELLOW+ "Ввод команды: " + ANSI_RESET);
     }
 }
