@@ -21,7 +21,7 @@ public class Main {
                     menu.getIn().close();
                     flag = false;
                 }
-                default -> System.out.println(ANSI_RED + "Некорректный ввод, попробуйте снова." + ANSI_RESET);
+                default -> System.out.println(ANSI_RED + "Некорректный ввод, возврат в главное меню." + ANSI_RESET);
             }
         }
     }

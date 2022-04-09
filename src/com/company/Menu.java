@@ -62,10 +62,13 @@ public class Menu {
 
     private static void printCommand() {
         System.out.println(ANSI_GREEN + "\nВыберите команду:\n" + ANSI_RESET +
-                "1) Конвертации числа из 10-ричной системы счисления в 16-ричную.\n" +
-                "2) Конвертации числа из 10-ричной системы счисления в 2-ичную.\n" +
-                "3) Конвертации числа из 2-ичной системы счисления в 10-ричную.\n" +
-                "4) Завершить работу");
+                ANSI_GREEN + "1" + ANSI_RESET + ") Конвертации числа из " + ANSI_YELLOW + "10" + ANSI_RESET +
+                "-ричной системы счисления в " + ANSI_YELLOW + "16" + ANSI_RESET + "-ричную.\n" +
+                ANSI_GREEN + "2" + ANSI_RESET + ") Конвертации числа из " + ANSI_YELLOW + "10" + ANSI_RESET +
+                "-ричной системы счисления в " + ANSI_YELLOW + "2" + ANSI_RESET + "-ичную.\n" +
+                ANSI_GREEN + "3" + ANSI_RESET + ") Конвертации числа из " + ANSI_YELLOW + "2" + ANSI_RESET +
+                "-ичной системы счисления в " + ANSI_YELLOW + "10" + ANSI_RESET + "-ричную.\n" +
+                ANSI_GREEN + "4" + ANSI_RESET + ") Завершить работу");
 
         System.out.print(ANSI_YELLOW + "\nВвод команды: " + ANSI_RESET);
     }

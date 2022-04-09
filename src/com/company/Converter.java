@@ -37,7 +37,7 @@ public class Converter {
                     Integer.parseInt(Long.toString(number), 2));
         } catch (NumberFormatException e) {
             System.out.println(ANSI_RED + "Некорректный формат ввода числа в 2-ичной системе. " +
-                    "Возврат в главное меню" + ANSI_RESET);
+                    "Возврат в главное меню." + ANSI_RESET);
         }
     }
 }
