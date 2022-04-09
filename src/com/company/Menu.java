@@ -3,11 +3,6 @@ package com.company;
 import java.util.Scanner;
 
 public class Menu {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-
     private Scanner in;
     private int command;
     private long number;
@@ -16,24 +11,6 @@ public class Menu {
         this.in = new Scanner(System.in);
         this.command = 0;
         this.number = 0;
-    }
-
-    public void launch() {
-        printCommand();
-        if (in.hasNextInt()) {
-            command = in.nextInt();
-            if (command > 0 && command < 4) {
-                System.out.print(ANSI_GREEN + "\nВвведите число:\n" + ANSI_RESET +
-                        ANSI_YELLOW + "Ввод числа: " + ANSI_RESET);
-                if (in.hasNextLong()) {
-                    number = in.nextLong();
-                } else {
-                    command = 0;
-                }
-            }
-        } else {
-            in.nextLine();
-        }
     }
 
     public Scanner getIn() {
@@ -61,15 +38,31 @@ public class Menu {
     }
 
     private static void printCommand() {
-        System.out.println(ANSI_GREEN + "\nВыберите команду:\n" + ANSI_RESET +
-                ANSI_GREEN + "1" + ANSI_RESET + ") Конвертации числа из " + ANSI_YELLOW + "10" + ANSI_RESET +
-                "-ричной системы счисления в " + ANSI_YELLOW + "16" + ANSI_RESET + "-ричную.\n" +
-                ANSI_GREEN + "2" + ANSI_RESET + ") Конвертации числа из " + ANSI_YELLOW + "10" + ANSI_RESET +
-                "-ричной системы счисления в " + ANSI_YELLOW + "2" + ANSI_RESET + "-ичную.\n" +
-                ANSI_GREEN + "3" + ANSI_RESET + ") Конвертации числа из " + ANSI_YELLOW + "2" + ANSI_RESET +
-                "-ичной системы счисления в " + ANSI_YELLOW + "10" + ANSI_RESET + "-ричную.\n" +
-                ANSI_GREEN + "4" + ANSI_RESET + ") Завершить работу");
+        System.out.println("""
+                
+                Выберите команду:
+                1) Конвертации числа из 10-ричной системы счисления в 16-ричную.
+                2) Конвертации числа из 10-ричной системы счисления в 2-ичную.
+                3) Конвертации числа из 2-ичной системы счисления в 10-ричную.
+                4) Завершить работу""");
 
-        System.out.print(ANSI_YELLOW + "\nВвод команды: " + ANSI_RESET);
+        System.out.print("\nВвод команды: ");
+    }
+
+    public void launch() {
+        printCommand();
+        if (in.hasNextInt()) {
+            command = in.nextInt();
+            if (command > 0 && command < 4) {
+                System.out.print("\nВвведите число:\nВвод числа: ");
+                if (in.hasNextLong()) {
+                    number = in.nextLong();
+                } else {
+                    command = 0;
+                }
+            }
+        } else {
+            in.nextLine();
+        }
     }
 }
