@@ -1,13 +1,15 @@
 package com.company;
 
-public class Converter {
-    private int number;
+import static com.company.Main.*;
 
-    public Converter(int number) {
+public class Converter {
+    private long number;
+
+    public Converter(long  number) {
         this.number = number;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
@@ -15,15 +17,27 @@ public class Converter {
         this.number = number;
     }
 
-    public void runDecToHex() {
-        System.out.println("10 в 16");
+    public void convDecToHex() {
+        System.out.println("\nКонвертации числа " + ANSI_YELLOW + number + ANSI_RESET +
+                " из 10-ричной системы счисления в 16-ричную:");
+        System.out.println(number + ANSI_GREEN + " => " + ANSI_RESET + Long.toHexString(number).toUpperCase());
     }
 
-    public void runDecToBin() {
-        System.out.println("10 в 2");
+    public void convDecToBin() {
+        System.out.println("\nКонвертации числа " + ANSI_YELLOW + number + ANSI_RESET +
+                " из 10-ричной системы счисления в 2-ичную:");
+        System.out.println(number + ANSI_GREEN + " => " + ANSI_RESET + Long.toBinaryString(number));
     }
 
-    public void runBinToDec() {
-        System.out.println("2 в 10");
+    public void convBinToDec() {
+        System.out.println("\nКонвертации числа " + ANSI_YELLOW + number + ANSI_RESET +
+                " из 2-ичной системы счисления в 10-ричную:");
+        try {
+            System.out.println(number + ANSI_GREEN + " => " + ANSI_RESET +
+                    Integer.parseInt(Long.toString(number), 2));
+        } catch (NumberFormatException e) {
+            System.out.println(ANSI_RED + "Некорректный формат ввода числа в 2-ичной системе. " +
+                    "Возврат в главное меню" + ANSI_RESET);
+        }
     }
 }
